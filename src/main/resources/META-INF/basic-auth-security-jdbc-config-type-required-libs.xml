@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<namespace xmlns="http://www.mulesoft.org/schema/mule/tooling.attributes" xmlns:mule="http://www.mulesoft.org/schema/mule/core">
+    <require>
+        <jar name="JDBC Driver .jar" fileName="mysql-connector-java-5.1.34-bin.jar" targetFolder="/lib/JDBC" targetRuntimeFolder="/plugins" className="java.sql.DriverManager"/>
+    </require>	
+</namespace>
