@@ -52,7 +52,6 @@ public class JDBCSecurityProvider implements SecurityProvider {
     @Optional
     String authoritiesByUsernameQuery;
 
-    @Override
     public void validate(String auth, List<String> acceptedRoles) throws UnauthorizedException {
         List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
         for(String role : acceptedRoles){

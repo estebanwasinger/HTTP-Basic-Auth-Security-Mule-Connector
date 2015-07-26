@@ -5,41 +5,37 @@
 
 package org.mule.modules.basicauthsecurity;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.inject.Inject;
-
 import org.apache.log4j.Logger;
 import org.mule.api.MuleEvent;
 import org.mule.api.MuleMessage;
-import org.mule.api.annotations.ConnectionStrategy;
+import org.mule.api.annotations.Category;
+import org.mule.api.annotations.Config;
 import org.mule.api.annotations.Connector;
-import org.mule.api.annotations.Configurable;
 import org.mule.api.annotations.Processor;
-import org.mule.api.annotations.param.Default;
-import org.mule.api.annotations.param.RefOnly;
 import org.mule.api.callback.SourceCallback;
 import org.mule.api.transport.PropertyScope;
 import org.mule.modules.basicauthsecurity.strategy.SecurityProvider;
 import org.mule.util.Base64;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Anypoint Connector
  *
  * @author MuleSoft, Inc.
  */
+@Category(name = "org.mule.tooling.category.security", description = "Security")
 @Connector(name = "basic-auth-security", friendlyName = "HTTP Basic Auth Security")
 public class BasicAuthSecurityConnector {
 	
 	private static final Logger logger = Logger.getLogger(BasicAuthSecurityConnector.class);
 
-	@ConnectionStrategy
+	@Config
 	SecurityProvider connectionStrategy;
 	
 	@Processor(intercepting = true)
-	@Inject
 	public Object secure(SourceCallback callback, MuleEvent me, MuleMessage mm, List<String> acceptedRoles) throws Exception  {
 		Map<String, Object> mapa = new HashMap<String, Object>();
 		String authorization = null;

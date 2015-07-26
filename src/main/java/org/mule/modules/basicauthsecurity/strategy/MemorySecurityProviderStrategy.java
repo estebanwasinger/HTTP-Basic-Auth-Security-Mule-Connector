@@ -5,12 +5,13 @@
 
 package org.mule.modules.basicauthsecurity.strategy;
 
+import org.mule.api.annotations.Configurable;
+import org.mule.api.annotations.components.Configuration;
+import org.mule.api.annotations.param.Default;
+import org.mule.modules.basicauthsecurity.UnauthorizedException;
+
 import java.util.List;
 import java.util.Map;
-
-import org.mule.api.annotations.components.Configuration;
-import org.mule.api.annotations.Configurable;
-import org.mule.modules.basicauthsecurity.UnauthorizedException;
 
 /**
  * Configuration type Strategy
@@ -21,6 +22,7 @@ import org.mule.modules.basicauthsecurity.UnauthorizedException;
 public class MemorySecurityProviderStrategy implements SecurityProvider {
 	
 	@Configurable
+	@Default("false")
 	public Boolean usersAsMap;
 
 	public Boolean getUsersAsMap() {
@@ -54,7 +56,6 @@ public class MemorySecurityProviderStrategy implements SecurityProvider {
 		this.usersMap = usersMap;
 	}
 
-	@Override
 	public void validate(String auth, List<String> acceptedRoles) throws UnauthorizedException {
 		if (usersAsMap) {
 			String password = usersMap.get(getUser(auth));
